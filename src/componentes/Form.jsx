@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Card } from "./Card";
 import { Error } from "./Error";
+import styles from "../styles/form.module.css"
 
 export const Form = () => {
   const [user, setUser] = useState({
@@ -23,37 +24,41 @@ export const Form = () => {
   };
   return (
     <div>
-      <form onSubmit={handlerSubmit}>
-        <label>Nombre</label>
-        <input
-          type="text"
-          value={user.name}
-          onChange={(e) => setUser({ ...user, name: e.target.value })}
-        />
-        <label>Pais</label>
-        <input
-          type="text"
-          value={user.country}
-          onChange={(e) => setUser({ ...user, country: e.target.value })}
-        />
-        <label>Titulo universitario</label>
-        <input
-          type="text"
-          value={user.degree}
-          onChange={(e) => setUser({ ...user, degree: e.target.value })}
-        />
-        <button className="button">Enviar</button>
+      <form onSubmit={handlerSubmit} className={styles.container}>
+        <div className={styles.form_item}>
+          <input placeholder="Nombre"
+            type="text"
+            value={user.name}
+            onChange={(e) => setUser({ ...user, name: e.target.value })}
+          />
+        </div>
+        <div className={styles.form_item}>
+          <input placeholder="Pais"
+            type="text"
+            value={user.country}
+            onChange={(e) => setUser({ ...user, country: e.target.value })}
+          />
+        </div>
+        <div className={styles.form_item}>
+          
+          <input placeholder="Titulo universitario"
+            type="text"
+            value={user.degree}
+            onChange={(e) => setUser({ ...user, degree: e.target.value })}
+          />
+        </div>
+        <button className={styles.btn}>Enviar</button>
       </form>
 
       {show && (
         <>
-        <Card user={user}/>
+          <Card user={user} />
         </>
       )}
 
       {error && (
         <>
-        <Error/>
+          <Error />
         </>
       )}
     </div>
